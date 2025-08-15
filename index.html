@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover" />
+  <title>Heat Pro — AutoEnd v1 (Manual End)</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="icon" href="icons/icon-192x192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#121a2b; --muted:#9bb0d1; --accent:#1fd1a2; --danger:#ff6b6b;
+      --btn:#1b2742; --text:#e9f0ff; --chip:#27365a;
+    }
+    *{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    body{margin:0;background:var(--bg);color:var(--text);padding:12px}
+    .wrap{max-width:900px;margin:0 auto;display:grid;gap:12px}
+    header{display:flex;align-items:center;gap:8px}
+    .badge{padding:4px 8px;border-radius:999px;background:#0f1a31;color:#8dd7c7;font-weight:600;font-size:12px}
+    .panel{background:var(--panel);border-radius:14px;padding:12px;box-shadow:0 6px 24px #0006}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    button{background:var(--btn);border:1px solid #2a3c66;border-radius:10px;color:var(--text);padding:10px 14px;font-weight:700}
+    button.chip{background:var(--chip);}
+    button.ok{background:#153a2e;border-color:#256f57}
+    button.danger{background:#3a1b1b;border-color:#6f2525}
+    .stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .card{background:#0f1727;border:1px solid #213257;border-radius:12px;padding:10px}
+    .card h4{margin:0 0 6px 0;font-size:12px;color:var(--muted);font-weight:600}
+    .card .big{font-size:20px;font-weight:800}
+    .history{min-height:200px}
+    .muted{color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h2 style="margin:0">Heat Pro — AutoEnd v1</h2>
+      <span class="badge" id="stateBadge">OK</span>
+    </header>
+
+    <div class="panel">
+      <div class="row" style="justify-content:space-between">
+        <div class="row">
+          <button id="undoBtn">↶ Undo</button>
+          <button id="resetBtn" class="danger">Reset</button>
+        </div>
+        <div class="row">
+          <button id="exportCsvBtn" class="chip">Export CSV</button>
+          <button id="exportJsonBtn" class="chip">Export JSON</button>
+        </div>
+      </div>
+      <div class="row" style="margin-top:8px">
+        <button id="plusT">+T</button>
+        <button id="plusS">+S</button>
+        <button id="endSpin" class="ok">End Spin</button>
+      </div>
+      <div class="stat" style="margin-top:10px">
+        <div class="card"><h4>Heat</h4><div class="big" id="heat">0</div></div>
+        <div class="card"><h4>Dead</h4><div class="big" id="dead">0</div></div>
+        <div class="card"><h4>BB</h4><div class="big" id="bb">0</div></div>
+        <div class="card"><h4>Dead Streak</h4><div class="big" id="deadStreak">0</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin:0 0 6px">Ringkasan 10 spin terakhir</h3>
+      <div class="stat">
+        <div class="card"><h4>Win-rate</h4><div class="big" id="winRate">0%</div></div>
+        <div class="card"><h4>Avg Tumble</h4><div class="big" id="avgT">0.0</div></div>
+        <div class="card"><h4>Scatter freq</h4><div class="big" id="sFreq">0%</div></div>
+        <div class="card"><h4>Total Spin</h4><div class="big" id="spinNum">0</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3 style="margin:0 0 6px">Riwayat</h3>
+      <div id="history" class="history muted">Belum ada data.</div>
+    </div>
+
+    <div class="muted">
+      Cara pakai: tap <b>+T</b> untuk setiap tumble; tap <b>+S</b> jika ada scatter. Saat putaran selesai (tidak ada pergerakan lagi / payout selesai), tap <b>End Spin</b>. Kalau tidak ada T/S sama sekali, End Spin akan mencatat sebagai Dead.
+    </div>
+  </div>
+<script src="main.js"></script>
+</body>
+</html>
